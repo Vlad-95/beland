@@ -1,0 +1,67 @@
+/*=====================
+  Базовая типография
+=====================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap');
+
+
+@opensans: 'Open Sans', sans-serif;
+@raleway: 'Raleway', sans-serif;
+
+body {
+  font-family: @opensans;  
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 400;
+  color: @darkBlue;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+& img {
+  max-width: 100%;
+}
+
+h1 {
+  
+}
+
+h2 {
+
+}
+
+p,
+li {
+  // font-size: 15px;
+  line-height: 1.2;
+  
+}
+
+li {
+  // font-size: 17px;
+  line-height: 24px;
+}
+
+p:last-child,
+li:last-child {
+  margin-bottom: 0;
+}
+
+.block-title {
+  font-size: 40px;
+  font-family: @raleway;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.page-title {
+  font-size: 40px;
+  font-family: @raleway;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 50px;
+}

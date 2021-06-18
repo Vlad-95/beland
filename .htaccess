@@ -1,0 +1,169 @@
+<Files ".htaccess">
+
+deny from all
+
+</Files>
+
+AddDefaultCharset UTF-8
+
+
+ErrorDocument 400 /error/400.html
+
+ErrorDocument 401 /error/401.html
+
+ErrorDocument 403 /error/403.html
+
+ErrorDocument 404 /error/404.html
+
+ErrorDocument 500 /error/500.html
+
+
+
+# Options - Indexes
+
+php_flag register_globals off
+
+php_flag magic_quotes_gpc off
+
+php_flag magic_quotes_runtime off
+
+
+
+<IfModule mod_dir.c>
+
+DirectoryIndex index.html$ index.php
+
+</IfModule>
+
+
+
+<IfModule mod_rewrite.c>
+
+
+
+RewriteBase /
+
+
+
+RewriteRule ^index.html$ index.php
+
+RewriteRule ^sitemap.xml$ sitemap.php
+
+
+
+RewriteRule ^info/([a-zA-Z0-9_]+).html$ index.php?dn=info&pa=$1 [NC]
+
+RewriteRule ^click-([0-9]*).html$ banner.php?banid=$1 [NC]
+
+
+
+RewriteRule ^yandex-([0-9]*)-([0-9]*).rss rss.php?dn=news&ya=$1&id=$2 [NC]
+
+RewriteRule ^yandex-([0-9]*).rss rss.php?dn=news&ya=$1 [NC]
+
+RewriteRule ^news-([0-9]*).rss rss.php?dn=news&id=$1 [NC]
+
+RewriteRule ^news.rss rss.php?dn=news [NC]
+
+RewriteRule ^ydown-([0-9]*)-([0-9]*).rss rss.php?dn=down&ya=$1&id=$2 [NC]
+
+RewriteRule ^ydown-([0-9]*).rss rss.php?dn=down&ya=$1 [NC]
+
+RewriteRule ^down-([0-9]*).rss rss.php?dn=down&id=$1 [NC]
+
+RewriteRule ^down.rss rss.php?dn=down [NC]
+
+
+
+RewriteRule ^(.*)/date-([0-9]*)-([0-9]*)-([0-9]*)-([0-9]*).html$ index.php?dn=$1&to=dat&ye=$2&mo=$3&da=$4&p=$5 [NC]
+
+RewriteRule ^(.*)/date-([0-9]*)-([0-9]*)-([0-9]*).html$ index.php?dn=$1&to=dat&ye=$2&mo=$3&da=$4 [NC]
+
+RewriteRule ^(.*)/view/([a-zA-Z0-9_]+)-([0-9]*).html$ index.php?dn=$1&to=cat&cpu=$2&p=$3 [NC]
+
+RewriteRule ^(.*)/view/([a-zA-Z0-9_]+).html$ index.php?dn=$1&to=cat&cpu=$2 [NC]
+
+#RewriteRule ^(.*)/view/(.*)/([a-zA-Z0-9_]+).html$ error/404.html [NC]
+
+RewriteRule ^(.*)/read/([a-zA-Z0-9_]+)-([0-9]*).html$ index.php?dn=$1&to=art&cpu=$2&p=$3 [NC]
+
+RewriteRule ^(.*)/read/([a-zA-Z0-9_]+).html$ index.php?dn=$1&to=art&cpu=$2 [NC]
+
+#RewriteRule ^(.*)/read/(.*)/([a-zA-Z0-9_]+).html$ error/404.html [NC]
+
+RewriteRule ^(.*)/open/([a-zA-Z0-9_]+)-([0-9]*).html$ index.php?dn=$1&to=open&cpu=$2&p=$3 [NC]
+
+RewriteRule ^(.*)/open/([a-zA-Z0-9_]+).html$ index.php?dn=$1&to=open&cpu=$2 [NC]
+
+#RewriteRule ^(.*)/open/(.*)/([a-zA-Z0-9_]+).html$ error/404.html [NC]
+
+RewriteRule ^(.*)/load/([a-zA-Z0-9_]+)-([a-zA-Z0-9]+).html$ index.php?dn=$1&re=load&ds=$3 [NC]
+
+RewriteRule ^(.*)/load/([a-zA-Z0-9]+).html$ index.php?dn=$1&re=load&ds=$2 [NC]
+
+RewriteRule ^(.*)/image/([a-zA-Z0-9_]+).html$ index.php?dn=$1&to=image&cpu=$2 [NC]
+
+RewriteRule ^(.*)/search-([0-9]*)-([0-9]*).html$ index.php?dn=$1&re=search&id=$2&p=$3 [NC]
+
+RewriteRule ^(.*)/comment.html$ index.php?dn=$1&re=comment [NC]
+
+RewriteRule ^(.*)/add.html$ index.php?dn=$1&re=add [NC]
+
+RewriteRule ^(.*)/rating.html$ index.php?dn=$1&to=rating [NC]
+
+RewriteRule ^(.*)/media-([0-9]*)-([0-9]*).html$ index.php?dn=$1&to=media&list=$2&p=$3 [NC]
+
+RewriteRule ^(.*)/image-([0-9]*).html$ index.php?dn=$1&to=image&id=$2 [NC]
+
+RewriteRule ^(.*)/dl-([0-9]*)-([0-9]*).html$ index.php?dn=$1&to=open&id=$3 [NC]
+
+RewriteRule ^(.*)/p-([0-9]*).html$ index.php?dn=$1&to=all&p=$2 [NC]
+
+RewriteRule ^(.*)/o-([0-9]*)-([0-9]*).html$ index.php?dn=$1&to=open&id=$2&p=$3 [NC]
+
+RewriteRule ^(.*)/o-([0-9]*).html$ index.php?dn=$1&to=open&id=$2 [NC]
+
+RewriteRule ^(.*)/a-([0-9]*)-([0-9]*).html$ index.php?dn=$1&to=art&id=$2&p=$3 [NC]
+
+RewriteRule ^(.*)/a-([0-9]*).html$ index.php?dn=$1&to=art&id=$2 [NC]
+
+RewriteRule ^(.*)/b-([0-9]*).html$ index.php?dn=$1&re=broken&id=$2 [NC]
+
+RewriteRule ^(.*)/r-([0-9]*)-([0-9]*).html$ index.php?dn=$1&to=cat&id=$2&p=$3 [NC]
+
+RewriteRule ^(.*)/r-([0-9]*).html$ index.php?dn=$1&to=cat&id=$2 [NC]
+
+RewriteRule ^(.*)/j-([0-9]*).html index.php?dn=$1&to=jump&id=$2 [NC]
+
+RewriteRule ^(.*)/print-([0-9]*).html$ index.php?dn=$1&re=print&id=$2 [NC]
+
+RewriteRule ^subscribe/act-([0-9]*)-([0-9]*).html$ index.php?dn=subscribe&to=act&id=$1&sa=$2
+
+
+
+RewriteCond  %{REQUEST_URI}  !^/apanel/
+
+RewriteCond  %{REQUEST_URI}  !^/apanel
+
+RewriteCond  %{REQUEST_URI}  !^/forum/
+
+RewriteCond  %{REQUEST_URI}  !^/forum
+
+RewriteCond  %{REQUEST_URI}  !^/setup/
+
+RewriteRule ^(.*)/$  index.php?dn=$1 [NC]
+
+
+
+</IfModule>
+
+<IfModule mod_expires.c>
+
+ExpiresActive on
+
+ExpiresByType image/jpeg "access plus 1 day"
+
+ExpiresByType image/gif "access plus 1 day"
+
+</IfModule>
+

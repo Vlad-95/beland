@@ -1,0 +1,53 @@
+.advantages {
+    padding: 38px 0 0;
+    
+    &__wrap {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        margin: 0 -20px;
+    }
+
+    &__title {
+        font-size: 40px;
+        font-family: @raleway;
+        font-weight: 800;
+        width: calc((100% / 3) - 40px);
+        margin: 0 20px;
+        line-height: 1.2;
+    }
+
+    &__item {
+        width: calc((100% / 3) - 40px);
+        display: flex;
+        align-items: flex-start;
+        margin: 15px 20px 92px;
+    }
+
+    .icon {
+        svg {
+            path {
+                fill: @darkBlue;
+            }
+        }
+    }
+
+    .content {
+        padding-left: 25px;
+
+        h3 {
+            margin: 0 0 10px;
+            font-size: 15px;
+            font-family: @raleway;
+            font-weight: 800;
+        }
+
+        p {
+            margin: 0;
+            font-family: @opensans;
+            font-size: 13px;
+            line-height: 1.5;
+        
+        }
+    }
+}

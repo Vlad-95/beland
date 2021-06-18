@@ -1,0 +1,28 @@
+.breadcrumbs {
+    display: flex;
+    list-style: none;
+    padding: 22px 0 27px;
+    margin: 0;
+    font-family: @opensans;
+    font-size: 13px;
+
+    &__item {
+        position: relative;
+        line-height: 1;
+
+        &:not(:last-of-type) {
+            padding-right: 40px;
+            &:after {
+                content: '>';
+                position: absolute;
+                right: 16px;
+            }
+        }
+
+        &:last-of-type {
+            font-weight: 700;
+            pointer-events: none;
+        }
+
+    }
+}
