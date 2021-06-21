@@ -1,0 +1,49 @@
+.logistics {
+    padding-bottom: 119px;
+    &__img {
+        margin-bottom: 67px;
+    }
+
+    .wysiwyg {
+        p {
+            font-size: 17px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        ul {
+            padding: 0;
+            font-size: 17px;
+            list-style: none;
+
+            li {
+                position: relative;
+                padding-left: 35px;
+
+                &:not(:last-of-type) {
+                    margin-bottom: 17px;
+                }
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    left: 8px;
+                    top: 10px;
+                    width: 5px;
+                    height: 5px;
+                    border-radius: 100px;
+                    background-color: @darkBlue;
+                }
+            }
+        }
+
+        h2 {
+            font-size: 1.4em;
+            margin: 38px 0 27px;
+        }
+    }
+}
