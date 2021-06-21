@@ -48,5 +48,20 @@ $(document).ready(function() {
 
             myMap.geoObjects.add(myPlacemark);
         }
+    };
+
+    //Наведение на блоке НАШИ МЕНЕДЖЕРЫ
+    if($('.team').length) {
+        $('.team__item').each(function() {
+            if($(this).find('.team__item-img .hover').length) {
+                $(this).hover(function() {
+                    $(this).find('.team__item-img').addClass('animate');
+                }, function() {
+                    $(this).find('.team__item-img').removeClass('animate')
+                });
+            }
+            
+        });
+        
     }
 });
