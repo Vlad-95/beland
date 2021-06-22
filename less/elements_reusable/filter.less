@@ -1,0 +1,104 @@
+.filter {
+    &__item {
+        position: relative;
+        padding: 15px 0;
+        border-top: 1px solid #7f8fa9;
+
+        &:last-of-type {
+            border-bottom: 1px solid #7f8fa9;
+        }
+
+        &-name {
+            font-size: 15px;
+            font-family: @opensans;
+            font-weight: 400;
+            margin: 0 0 25px;
+        }
+
+        .drop {
+            position: absolute;
+            right: -3px;
+            top: 15px;
+            width: 20px;
+            height: 20px;
+            transform: rotate(180deg);
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+            img {
+                width: 10px;
+                height: 7px;
+            }
+        }
+
+        &.active {
+
+            .drop {
+                transform: rotate(0);
+            }
+            
+            
+        }
+    }
+
+    &__checkbox {
+        position: relative;
+        cursor: pointer;
+        display: block;
+
+        &:not(:last-of-type) {
+            margin-bottom: 15px;
+        }
+
+        input {
+            position: absolute;
+            opacity: 0;            
+
+            &:checked + .text:after {
+                opacity: 1;
+            }
+        }
+
+        .text {
+            position: relative;
+            font-family: @opensans;
+            font-size: 13px;
+            font-weight: 400;
+            color: @darkBlue;
+            padding-left: 41px;
+            margin: 0;
+
+            a {
+                text-decoration: underline;
+                font-weight: 700;
+            }
+
+            &:before {
+                content: '';
+                position: absolute;
+                width: 24px;
+                height: 24px;
+                border-radius: 5px;
+                border: 1px solid #b2bccb;
+                top: -5px;
+                left: 0;
+            }
+
+            &:after {
+                content: '';
+                position: absolute;
+                left: 5px;
+                top: 2px;
+                width: 14px;
+                height: 10px;
+                background-image: url('../img/icons/agree.png');
+                background-size: cover;
+                opacity: 0;
+                transition: 0.3s;
+            }
+        }
+    }
+}
