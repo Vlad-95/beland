@@ -1,7 +1,7 @@
 .filter {
     &__item {
         position: relative;
-        padding: 15px 0;
+        padding: 15px 0 22px;
         border-top: 1px solid #7f8fa9;
 
         &:last-of-type {
@@ -12,7 +12,7 @@
             font-size: 15px;
             font-family: @opensans;
             font-weight: 400;
-            margin: 0 0 25px;
+            margin: 0;
         }
 
         .drop {
@@ -42,6 +42,11 @@
             
             
         }
+
+        &-content {
+            display: none;
+            margin: 20px 0 0;
+        }
     }
 
     &__checkbox {
@@ -50,7 +55,7 @@
         display: block;
 
         &:not(:last-of-type) {
-            margin-bottom: 15px;
+            margin-bottom: 6px;
         }
 
         input {
@@ -70,6 +75,7 @@
             color: @darkBlue;
             padding-left: 41px;
             margin: 0;
+            line-height: 24px;
 
             a {
                 text-decoration: underline;
@@ -83,7 +89,7 @@
                 height: 24px;
                 border-radius: 5px;
                 border: 1px solid #b2bccb;
-                top: -5px;
+                top: 0px;
                 left: 0;
             }
 
@@ -91,11 +97,116 @@
                 content: '';
                 position: absolute;
                 left: 5px;
-                top: 2px;
+                top: 7px;
                 width: 14px;
                 height: 10px;
                 background-image: url('../img/icons/agree.png');
                 background-size: cover;
+                opacity: 0;
+                transition: 0.3s;
+            }
+        }
+    }
+
+    &__range {
+
+        .irs--round {
+            height: auto;
+
+            .irs-line {
+                top: 0;
+                background-color: #eceef1;
+                border-radius: 100px;
+            }
+
+            .irs-bar {
+                top: 0;
+                background-color: #7f8fa9;
+            }
+
+            .irs-handle {
+                top: -2px;
+                width: 8px;
+                height: 8px;
+                border: 1px solid #7f8fa9;
+                box-shadow: none;
+            }
+        }
+
+        &-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 22px;
+        }
+
+        &-input {
+            border: 1px solid #7f8fa9;
+            border-radius: 5px;
+            text-align: center;
+            color: @darkBlue;
+            font-size: 13px;
+            font-family: @opensans;
+            height: 24px;
+            width: 35%;
+            outline: none;
+            padding: 0 10px;
+
+        }
+    }
+
+    &__radio {
+        position: relative;
+        cursor: pointer;
+        display: block;
+
+        &:not(:last-of-type) {
+            margin-bottom: 10px;
+        }
+
+        input {
+            position: absolute;
+            opacity: 0;            
+
+            &:checked + .text:after {
+                opacity: 1;
+            }
+        }
+
+        .text {
+            position: relative;
+            font-family: @opensans;
+            font-size: 13px;
+            font-weight: 400;
+            color: @darkBlue;
+            padding-left: 41px;
+            margin: 0;
+            line-height: 20px;
+
+            a {
+                text-decoration: underline;
+                font-weight: 700;
+            }
+
+            &:before {
+                content: '';
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                border-radius: 100px;
+                border: 1px solid #7f8fa9;
+                top: 0px;
+                left: 2px;
+            }
+
+            &:after {
+                content: '';
+                position: absolute;
+                top: 6px;
+                left: 8px;
+                width: 8px;
+                height: 8px;
+                border-radius: 100px;
+                background-color: #7f8fa9;
                 opacity: 0;
                 transition: 0.3s;
             }

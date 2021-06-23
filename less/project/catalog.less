@@ -13,6 +13,37 @@
             font-size: 20px;
             font-family: @raleway;
             font-weight: 800;
+
+            &.parameters {
+                position: relative;
+
+                .reset {
+                    position: absolute;
+                    right: 0;
+                    top: -2px;
+                    background-color: @green;                   
+                    border: none;                    
+                    padding: 2px 5px 5px 10px;
+                    border-radius: 10px;
+                    display: none;
+                    
+
+                    .count {
+                        color: @white;
+                        font-size: 13px;
+                        font-weight: 700;
+                        font-family: @opensans;
+                        margin-right: 5px;
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+
+                    svg {
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+                }
+            }
         }
     }
 

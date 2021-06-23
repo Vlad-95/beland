@@ -15,8 +15,7 @@ $(document).ready(function() {
             $(this).find('.category_main__item-name').css('color', color);
             $(this).find('.category_main__item-name path').css('fill', color);
         });
-    }
-    
+    }    
 
     // цвет категорий на странице 
     if($('.catalog__menu').length) {
@@ -34,6 +33,122 @@ $(document).ready(function() {
 
             $(this).closest('.catalog__menu-item').toggleClass('active');
             $(this).siblings('.catalog__menu-sub').slideToggle();
+        })
+    }
+
+    //клик по чекбоксам и радиокнопкам
+    if($('.filter').length) {
+        //счетчик для показа цифры в кнопке "Сбросить"
+        let resetCount = 0;
+
+        $('.filter__checkbox input').click(function() {
+            if($(this).is(':checked')) {
+                $(this).prop('checked', true).attr('checked', 'checked');
+                resetCount++;
+            } else {
+                $(this).prop('checked', false).removeAttr('checked');
+                resetCount--;
+            }
+           console.log(resetCount) 
+        });
+
+        $('.filter__radio input').click(function() {
+            
+            if($(this).is(':checked')) {
+                $(this).prop('checked', true).attr('checked', 'checked');
+                $(this).parent().siblings().find('input').prop('checked', false).removeAttr('checked');
+            };            
+        });
+    }
+    
+    
+
+    //диапазон в каталоге
+    if($('.filter').length) {        
+
+        $(".js-range-slider").each(function() {
+            let inputFrom = $(this).siblings('.filter__range-row').find('.filter__range-input_from');
+            let inputTo = $(this).siblings('.filter__range-row').find('.filter__range-input_to');
+            $(this).ionRangeSlider({
+                hide_from_to: true,
+                hide_min_max: true,
+                skin: "round",
+    
+                onStart: function (data) {
+                    inputFrom.val(data.from);
+                    inputTo.val(data.to)
+                },
+
+                onChange: function (data) {
+                    inputFrom.val(data.from);
+                    inputTo.val(data.to)
+                },
+
+                onFinish: function (data) {
+                    inputFrom.val(data.from);
+                    inputTo.val(data.to)
+                }
+            });
+
+            let range = $(this).data("ionRangeSlider");
+
+            inputFrom.on('change', function() {
+                let value = $(this).val();
+                //минимальное возможное значение для ввода
+                let minValue = range.options.min.toString();
+                //максимальное возможное значение для ввода
+                let maxValue = range.options.max.toString();  
+                
+                if (value == "") {                    
+                    $(this).val("0")
+                } else if (value >= maxValue) {
+                    $(this).val(maxValue);
+                }
+                range.update({
+                    from: value
+                })
+            })
+
+            inputTo.on('change', function() {
+                let value = $(this).val();
+                //минимальное возможное значение для ввода
+                let minValue = range.options.min.toString();
+                //максимальное возможное значение для ввода
+                let maxValue = range.options.max.toString();  
+                
+                if (value == "") {                    
+                    $(this).val("0")
+                } else if (value >= maxValue) {
+                    $(this).val(maxValue);
+                }
+
+                range.update({
+                    to: $(this).val()
+                })
+            })
+        });
+
+        $('.filter__range-input').on('input', function() {
+            $(this).val($(this).val().replace(/\D/, ''));
+        });
+    }    
+
+    //кнопка reset в фильтре
+    if($('.filter').length) {
+        //очистка
+        $('button[type="reset"]').click(function() {
+            $('.filter').find('input[type="checkbox"]').prop('checked', false).removeAttr('checked');
+            $('.filter').find('input[type="radio"]').prop('checked', false).removeAttr('checked');
+        }); 
+        
+    }
+
+    //октрытие/скрытие фильтров
+    if($('.filter').length) {
+        $('.filter .filter__item .drop').click(function() {
+
+            $(this).closest('.filter__item').toggleClass('active');
+            $(this).siblings('.filter__item-content').slideToggle();
         })
     }
 
