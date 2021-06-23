@@ -34,6 +34,9 @@ $(document).ready(function() {
             $(this).closest('.catalog__menu-item').toggleClass('active');
             $(this).siblings('.catalog__menu-sub').slideToggle();
         })
+
+        $('.catalog__menu .catalog__menu-item.current').addClass('active').find('.catalog__menu-sub').slideDown();
+      
     }
 
     //клик по чекбоксам и радиокнопкам
@@ -152,12 +155,18 @@ $(document).ready(function() {
         })
     }
 
-    //переключение цветов на странице категории
-    if($('.catalog__item-color .item').length) {
-        $('.catalog__item-color .item').click(function() {
+    //переключение цветов на странице категории и в сайдбаре
+    if($('.catalog__item-color .item').length || $('.similar__item-color .item').length) {
+        $('.catalog__item-color .item, .similar__item-color .item').click(function() {
             let colorItemIndex = $(this).index();
             $(this).addClass('active').siblings().removeClass('active');
             $(this).closest('.catalog__item').find('.catalog__item-img').find('img').removeClass('active').eq(colorItemIndex).addClass('active')
+        });
+
+        $('.similar__item-color .item').click(function() {
+            let colorItemIndex = $(this).index();
+            $(this).addClass('active').siblings().removeClass('active');
+            $(this).closest('.similar__item').find('.similar__item-img').find('img').removeClass('active').eq(colorItemIndex).addClass('active')
         })
     }
 
