@@ -215,6 +215,10 @@
 }
 
 .catalog-detail {
+    .block-title {
+        font-size: 20px;
+    }
+
     &__main {
         display: flex;
         padding-top: 20px;
@@ -312,5 +316,42 @@
         display: inline-block;
         margin-top: 24px;
         padding: 13px 18px;
+    }
+
+    .services {
+        &__wrap {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+
+        &__item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            width: calc(50% - 30px);
+            border-radius: 10px;
+            background-color: #f7f8fa;
+            margin: 0 15px 30px;
+            padding: 22px 29px;
+
+            &-icon {
+                width: 35%;
+            }
+
+            &-content {
+                width: 65%;
+            }
+
+            &-name {
+                font-size: 17px;
+                margin: 0 0 11px;
+            }
+            p {
+                font-size: 13px;
+                line-height: 1.5;
+            }
+        }
+        
     }
 }
