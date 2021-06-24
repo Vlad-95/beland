@@ -184,6 +184,10 @@ $(document).ready(function() {
         $('.news .news__item .news__item-content').matchHeight();
     };
 
+    if($('.opportunities').length) {
+        $('.opportunities .opportunities__item .opportunities__item-name').matchHeight();
+    };
+
     if($('#map').length) {
         ymaps.ready(init);
         function init(){

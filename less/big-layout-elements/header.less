@@ -1,15 +1,5 @@
 .header {
-
     border-bottom: 1px solid @darkBlue;
-
-    &_mainpage {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        z-index: 2;
-        border: none;
-    }
 
     &__wrap {
         padding: 13px 0;
@@ -70,4 +60,35 @@
             align-items: center;
         }
     }
+
+    &_mainpage {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        z-index: 2;
+        border: none;
+    }
+
+    &_prod {
+        border: none;
+
+        .header__wrap {
+            padding: 6px 0;
+        }
+
+        .logo {
+            max-width: 87px;
+        }
+
+        .header__menu {
+            margin: 5px 0 0 71px;
+        }
+
+        .icons {
+            margin-left: auto;
+        }
+    }
+
+    
 }
