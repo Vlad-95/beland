@@ -1,9 +1,36 @@
 $(document).ready(function() {
+
     if($('.slider').length) {
         $('.slider').slick({
             dots: false,
             arrows: false
         });
+
+        //положение курсора в элементе
+        $('.slider').mousemove(function (e) {
+            let parentOffset = $(this).offset();
+            let relX = e.pageX - parentOffset.left;
+            let relY = e.pageY - parentOffset.top;
+            let parentWidth = $(this).width();
+
+            if(relX >= (parentWidth / 2)) {
+                $('.slider').removeClass('left').addClass('right');
+            } else {
+                $('.slider').removeClass('right').addClass('left');
+            }
+
+        });
+
+        $('.slider').on('click', function(e) {
+            let target = e.target;
+
+            if($(this).hasClass('right') && !($(target).hasClass('slider__item-link'))) {
+                $('.slider').slick('slickNext')
+            }
+            if($(this).hasClass('left') && !($(target).hasClass('slider__item-link'))) {
+                $('.slider').slick('slickPrev')
+            }            
+        })
     }
 
     // цвет категорий на главной
