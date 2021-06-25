@@ -230,4 +230,25 @@ $(document).ready(function() {
             
         })
     }
+
+    //Слайдер каталог-детальная
+    if($('.catalog-detail__slider').length) {
+        $('.catalog-detail__slider .catalog-detail__big').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            fade: true,
+            asNavFor: '.catalog-detail__small',
+            
+        });
+
+        $('.catalog-detail__slider .catalog-detail__small').slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            arrows: false,
+            fade: false,
+            asNavFor: '.catalog-detail__big',
+            focusOnSelect: true
+        })
+    }
 });
