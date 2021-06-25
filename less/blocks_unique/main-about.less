@@ -29,3 +29,43 @@
         }
     }
 }
+
+@media screen and (max-width: 1200px) {
+    .about_main {
+        &__content {
+            padding-left: 40px;
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .about_main {
+        &__img {
+            width: 35%;
+        }
+
+        &__content {
+            width: 65%;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .about_main {
+
+        &__wrap {
+            flex-wrap: wrap;
+        }
+        &__img {
+            width: 100%;
+            order: 2;
+        }
+
+        &__content {
+            width: 100%;
+            order: 1;
+            padding-left: 0;
+            margin-bottom: 40px;
+        }
+    }
+}

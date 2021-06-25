@@ -21,6 +21,7 @@
         .slick-prev {
             left: -38px;
             top: 38%;
+            z-index: 2;
 
             &:before {
                 content: '';
@@ -36,6 +37,7 @@
         .slick-next {
             right: -38px;
             top: 38%;
+            z-index: 2;
             
             &:before {
                 content: '';
@@ -44,6 +46,20 @@
                 height: 22px;
                 background-image: url('../img/icons/slider-arrow_green.svg');
                 display: block;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .partners {
+        &__slider {
+            .slick-prev {
+                left: 0;
+            }
+
+            .slick-next {
+                right: 0;
             }
         }
     }

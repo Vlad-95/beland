@@ -1,7 +1,3 @@
-.intro {
-    .prev {}
-}
-
 .slider {
 
     &.right {
@@ -13,10 +9,10 @@
     }
 
     &__item {
-        height: 570px;
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
+        outline: none;
 
         &-wrap {
             height: 570px;
@@ -44,6 +40,49 @@
             font-size: 17px;
             padding: 15px 35px 17px;
             border-radius: 10px;
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .slider {
+        &__item {
+            &-wrap {
+                height: 450px;
+                padding: 70px 0 50px;
+            }
+
+            &-title {
+                font-size: 24px;
+            }
+
+            &-link {
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .slider {
+        &__item {
+            &-title {
+                font-size: 20px;
+            }
+
+            &-link {
+                font-size: 13px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .slider {
+        &__item {
+            &-wrap {
+                height: 400px;
+            }
         }
     }
 }
