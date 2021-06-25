@@ -278,4 +278,13 @@ $(document).ready(function() {
             focusOnSelect: true
         })
     }
+
+    //открытие/закрытие формы в шапке
+    $('.icons .feedback').click(function () {
+        $('.form.small').fadeIn();
+    });
+
+    $('.form.small .form__close').click(function () {
+        $('.form.small').fadeOut();
+    })
 });
