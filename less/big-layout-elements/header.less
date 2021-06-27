@@ -24,9 +24,44 @@
         font-weight: 700;
 
         &-item {
+            position: relative;
+
             &:not(:last-of-type) {
                 margin-right: 27px;
             }
+        }
+
+        &-drop {
+            position: absolute;
+            top: 6px;
+            right: -17px;
+            width: 15px;
+            height: 15px;
+            background-image: url('../img/icons/arrow.png');
+            background-size: 10px 7px;
+            background-position: center;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            transform: rotate(180deg);
+            transition: 0.3s;
+
+            &.active {
+                transform: rotate(0);
+            }
+        }
+
+        &-sub {
+            display: none;
+            position: absolute;
+            width: 175px;
+            top: 100%;
+            left: -50%;
+            background-color: @darkBlue;
+            color: @white;
+            margin: 0;
+            padding: 20px 30px;
+            list-style: none;
+            font-size: 13px;
         }
     }
 
@@ -98,11 +133,20 @@
         top: 0;
         width: 70%;
         height: 100vh;
-        min-height: 320px;
+        max-height: 100vh;
         background-color: @darkBlue;
         display: none;
-        padding: 80px 40px 80px;
+        
         overflow: auto;
+
+        &__content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            height: 100%;
+            padding: 80px 40px 40px;
+        }
 
         &__close {
             position: absolute;
@@ -165,19 +209,28 @@
 
 @media screen and (max-width: 1200px) {
     .header {
+
+        .logo {
+            max-width: 90px;
+        }
+
         &__menu {
-            font-size: 13px;
+            font-size: 12px;
             margin: 0 0 0 auto;
 
             &-item {
                 &:not(:last-of-type) {
-                    margin-right: 15px;
+                    margin-right: 27px;
                 }
+            }
+
+            &-drop {
+                top: 4px;
             }
         }
 
         &__phone {
-            font-size: 13px;
+            font-size: 12px;
         }
     }
 }
@@ -189,13 +242,33 @@
             align-items: flex-start;
             justify-content: flex-start;
             color: @white;
+            margin: 0;
+
+            &-item {
+                width: 100%;
+                &:not(:last-of-type) {
+                    margin-right: 0;
+                }
+            }
+
+            &-drop {
+                background-image: url('../img/icons/arrow-white.png');
+                right: 0;
+                left: 130px;
+            }
+
+            &-sub {
+                position: relative;
+                width: auto;
+                left: 0;
+                top: 0;
+                
+            }
         }
 
         .icons { 
             margin-left: 0;
-            position: absolute;
-            bottom: 40px;
-            left: 40px;
+            
         }
 
         .burger {
