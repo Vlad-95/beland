@@ -475,3 +475,44 @@
         
     }
 }
+
+@media screen and (max-width: 1200px) {
+    .catalog {
+        &__sidebar {
+            padding-right: 40px;
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .catalog {
+        &__item {
+            width: calc((100% / 2) - 30px);
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .catalog {
+        &__sidebar {
+            width: 26%;
+            display: none;
+        }
+
+        &__content {
+            width: 100%;
+        }
+        
+        &__item {
+            width: calc((100% / 2) - 30px);
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .catalog {
+        &__item {
+            width: calc((100% / 1) - 30px);
+        }
+    }
+}
