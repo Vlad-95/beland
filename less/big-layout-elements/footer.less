@@ -137,8 +137,16 @@
 
 @media screen and (max-width: 992px) {
     .footer {
+
+        &__wrap {
+            flex-wrap: wrap;
+        }
+
         &__content {
-            padding-left: 110px;
+            padding-left: 0;
+            padding-top: 0;
+            margin-top: 40px;
+            width: 100%;
         }
 
         &__menu {
@@ -147,6 +155,57 @@
             &-item {
                 &:not(:last-of-type) {
                     margin-right: 30px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footer {
+
+        &__menu {
+            
+            flex-wrap: wrap;
+            
+            &-item {
+                &:not(:last-of-type) {
+                    margin-right: 30px;
+                }
+            }
+        }
+
+        &__contacts {
+            flex-wrap: wrap;
+
+            &-item {                
+                &:not(:last-child) {
+                    margin-bottom: 20px;
+                    &:after {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .rights {
+            flex-direction: column;
+            align-items: flex-start;
+
+            &__item {
+                &:not(:last-of-type) {
+                    margin-bottom: 20px;
+                }
+
+                &.siluet {
+
+                    a {
+                        padding-left: 30px;
+
+                        &:before {
+                            left: 0;
+                        }
+                    }
                 }
             }
         }

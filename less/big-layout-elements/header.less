@@ -92,6 +92,42 @@
         }
     }
 
+    .mobile-menu {
+        position: fixed;
+        right: 0;
+        top: 0;
+        width: 70%;
+        height: 100vh;
+        min-height: 320px;
+        background-color: @darkBlue;
+        display: none;
+        padding: 80px 40px 80px;
+        overflow: auto;
+
+        &__close {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            background-color: @green;
+            width: 40px;
+            height: 40px;
+            border-radius: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;  
+        }
+    }
+
+    .search-block {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: @white;
+        padding: 40px;
+    }
+
     &_mainpage {
         position: absolute;
         left: 0;
@@ -149,11 +185,17 @@
 @media screen and (max-width: 992px) {
     .header {
         &__menu {
-            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            color: @white;
         }
 
         .icons { 
-            display: none;
+            margin-left: 0;
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
         }
 
         .burger {

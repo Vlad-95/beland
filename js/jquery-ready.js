@@ -33,6 +33,50 @@ $(document).ready(function() {
         })
     }
 
+    //Мобильное меню
+
+    if (window.innerWidth <= 992) {
+        let desktopMenu = $('.header__menu');
+        let headerIcons = $('.header__wrap .icons');
+        let mobileMenuClose = document.createElement('div');
+        let mobileMenuCloseSvg = $('.header__wrap .form.small .form__close svg');
+        let mobileMenu = document.createElement('div');
+        
+        $(mobileMenu).addClass('mobile-menu').appendTo('.header__wrap');
+        $(mobileMenuClose).addClass('mobile-menu__close').appendTo('.mobile-menu');
+        mobileMenuCloseSvg.clone().appendTo('.mobile-menu__close')
+        desktopMenu.detach().appendTo('.mobile-menu');
+        headerIcons.detach().appendTo('.mobile-menu');
+        
+    }
+
+    //Открытие/закрытие мобильного меню
+    $('.burger').click(function() {
+        $('body').addClass('opacity-layer');
+        $('.mobile-menu').show("slide", { direction: "right" }, 500);
+    });
+
+    $('.mobile-menu__close').click(function() {
+        $('body').removeClass('opacity-layer');
+        $('.mobile-menu').hide("slide", { direction: "right" }, 500);
+    })
+
+    //открытие/закрытие поиска
+    $('.header__wrap .icons .search').click(function() {
+        $('body').addClass('opacity-layer');
+        $('.search-block').slideDown();
+    });
+
+    $('body').click(function(e) {
+        let target = e.target;
+       
+        if ($(target).hasClass('opacity-layer') && $('.search-block').css('display') == 'block') {
+            $('body').removeClass('opacity-layer');
+            $('.search-block').slideUp();
+        }
+        
+    })
+
     // цвет категорий на главной
     if($('.category_main').length) {
         $('.category_main .category_main__item').each(function () {
