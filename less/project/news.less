@@ -113,3 +113,27 @@
         }
     }
 }
+
+@media screen and (max-width: 768px) {
+    .news {
+        &__item {
+            width: calc((100% / 2) - 30px);
+        }
+    }
+
+    .news-detail {
+        .wysiwyg {
+            p {
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .news {
+        &__item {
+            width: calc((100% / 1) - 30px);
+        }
+    }
+}

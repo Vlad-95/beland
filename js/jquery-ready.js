@@ -338,7 +338,8 @@ $(document).ready(function() {
     //слайдер Производство-детальная
     if($('.prod-detail__slider').length) {
         $('.prod-detail__slider').slick({
-            
+            arrows: false,
+            dots: false
         })
     }
 

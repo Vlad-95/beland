@@ -25,3 +25,36 @@
         margin-left: auto;
     }
 }
+
+@media screen and (max-width: 992px) {
+    .production_about {
+        &__content {
+            width: 50%;
+        }
+
+        &__img {
+            width: 50%;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .production_about {
+        &__title {
+            font-size: 25px;
+        }
+        &__content {
+            width: 100%;
+
+            p {
+                font-size: 15px;
+            }
+        }
+
+        &__img {
+            width: 100%;
+            margin-top: 40px;
+            text-align: center;
+        }
+    }
+}

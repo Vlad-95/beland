@@ -114,3 +114,48 @@
         }
     }
 }
+
+@media screen and (max-width: 1200px) {
+
+}
+
+@media screen and (max-width: 768px) {
+    .contacts {
+        &__wrap {
+            flex-wrap: wrap;    
+        }
+
+        &__item {
+            width: calc((100% / 2) - 30px);
+            margin: 0 15px 20px;
+        }
+    }
+
+    .team {
+        &__wrap {
+            flex-wrap: wrap;
+        }
+
+        &__item {
+            width: calc((100% / 2) - 30px);
+            margin: 0 15px 20px;
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .contacts {
+
+        &__item {
+            width: calc((100% / 1) - 30px);
+            margin: 0 15px 20px;
+        }
+    }
+
+    .team {
+        &__item {
+            width: calc((100% / 1) - 30px);
+            margin: 0 15px 20px;
+        }
+    }
+}

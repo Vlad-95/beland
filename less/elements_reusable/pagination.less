@@ -43,3 +43,45 @@
         padding: 14px 19px 11px;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .pagination {
+        padding: 40px 0;
+        
+        .menu {
+            &__item {
+                width: 30px;
+                height: 30px;
+                font-size: 13px;
+                line-height: 30px;
+            }
+        }
+        .show-more {
+            font-size: 13px;
+            padding: 9px 19px 8px;
+        }
+    }
+    
+}
+
+@media screen and (max-width: 576px) {
+    .pagination {
+        padding: 20px 0;
+
+        &__row {
+            flex-direction: column;
+            align-items: center;
+
+        }
+
+        .menu {
+            order: 2;
+            margin-top: 20px;
+        }
+
+        .show-more {
+            order: 1;
+            margin-left: 0;
+        }
+    }
+}
