@@ -71,7 +71,13 @@ $(document).ready(function() {
     //открытие/закрытие поиска
     $('.header__wrap .icons .search').click(function() {
         $('body').addClass('opacity-layer');
+        $('.form.small').fadeOut();
         $('.search-block').slideDown();
+
+        if (window.innerWidth <= 992) {           
+           
+            $('.mobile-menu').hide("slide", { direction: "right" }, 500);
+        }
     });
 
     $('body').click(function(e) {
@@ -360,9 +366,19 @@ $(document).ready(function() {
     //открытие/закрытие формы в шапке
     $('.icons .feedback').click(function () {
         $('.form.small').fadeIn();
+
+        if (window.innerWidth <= 992) {
+            $('body').removeClass('no-scroll');
+            $('.burger').hide();
+            $('.mobile-menu').hide("slide", { direction: "right" }, 500);
+        }
     });
 
     $('.form.small .form__close').click(function () {
+        if (window.innerWidth <= 992) {
+            $('body').removeClass('opacity-layer');
+            $('.burger').show();
+        }
         $('.form.small').fadeOut();
     })
 });

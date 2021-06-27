@@ -178,6 +178,7 @@
 
     &.small {
         position: absolute;
+        z-index: 2;
         top: 19px;
         right: 34px;
         background-color: @white;
@@ -314,6 +315,17 @@
 
         .form__input {
             height: 40px;
+        }
+    }
+}
+
+
+@media screen and (max-width: 992px) {
+    .form {
+        &.small {
+            left: 0;
+            right: 0;
+            margin: auto;
         }
     }
 }
