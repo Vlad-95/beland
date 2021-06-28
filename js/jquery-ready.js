@@ -239,6 +239,13 @@ $(document).ready(function() {
         })
     }
 
+    if (window.innerWidth <= 992) {
+        $('.js-catalog-toggle').click(function() {
+            $(this).toggleClass('active').next('.js-catalog-content').slideToggle();
+
+        })
+    }
+
     //переключение цветов на странице категории и в сайдбаре
     if($('.catalog__item-color .item').length || $('.similar__item-color .item').length) {
         $('.catalog__item-color .item, .similar__item-color .item').click(function() {
@@ -360,8 +367,27 @@ $(document).ready(function() {
             arrows: false,
             fade: false,
             asNavFor: '.catalog-detail__big',
-            focusOnSelect: true
+            focusOnSelect: true,
+            responsive: [
+                {
+                  breakpoint: 768,
+                  settings: {
+                    slidesToShow: 3
+                  }
+                }
+            ]
         })
+    }
+
+    //перенос блока комплектов из сайдбара
+    if (window.innerWidth <= 992 && $('.similar').length) {
+        let similarBlock = $('.similar:not(h2)');
+        let similarBlockTitle = $('h2.similar');
+
+        similarBlock.detach().appendTo($('.catalog-detail .catalog__content'));
+        similarBlock.prepend(similarBlockTitle);
+        similarBlock.addClass('catalog-detail__similar');
+        similarBlockTitle.removeClass('catalog__sidebar-name similar').addClass('block-title');
     }
 
     //открытие/закрытие формы в шапке
