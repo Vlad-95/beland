@@ -136,23 +136,56 @@ $(document).ready(function() {
                 $(this).prop('checked', false).removeAttr('checked');
                 resetCount--;
             }
-           console.log(resetCount) 
+
+            if (resetCount >= 1) {            
+                $('.catalog__sidebar-name.parameters button[type="reset"] .count').text(resetCount);
+                $('.catalog__sidebar-name.parameters button[type="reset"]').fadeIn();
+            } else {
+                $('.catalog__sidebar-name.parameters button[type="reset"]').fadeOut();
+            }
         });
 
-        $('.filter__radio input').click(function() {
-            
+        $('.filter__item').each(function() {
+            if($(this).find('.filter__radio').length) {
+                let radioClickCount = 0;
+                $(this).find('.filter__radio input').click(function() {
+                    if (radioClickCount >= 1) {
+                        radioClickCount +=0;
+                        resetCount += 0;
+                    } else {
+                        radioClickCount++;
+                        resetCount++;
+                    }
+
+                    if (resetCount >= 1) {       
+                        $('.catalog__sidebar-name.parameters button[type="reset"] .count').text(resetCount);     
+                        $('.catalog__sidebar-name.parameters button[type="reset"]').fadeIn();
+                    } else {
+                        $('.catalog__sidebar-name.parameters button[type="reset"]').fadeOut();
+                    }
+                })
+            }
+        });
+
+        $('.filter__radio input').click(function() {           
+
             if($(this).is(':checked')) {
                 $(this).prop('checked', true).attr('checked', 'checked');
                 $(this).parent().siblings().find('input').prop('checked', false).removeAttr('checked');
             };            
         });
-    }
-    
-    
 
-    //диапазон в каталоге
-    if($('.filter').length) {        
+        //кнопка reset в фильтре очистка
+        $('button[type="reset"]').click(function() {
+            resetCount = 0;
+            $(this).fadeOut();
 
+            $('.filter').find('input[type="checkbox"]').prop('checked', false).removeAttr('checked');
+            $('.filter').find('input[type="radio"]').prop('checked', false).removeAttr('checked');
+            $('.filter__range-input_from').val("0");
+        }); 
+
+        //диапазон в каталоге
         $(".js-range-slider").each(function() {
             let inputFrom = $(this).siblings('.filter__range-row').find('.filter__range-input_from');
             let inputTo = $(this).siblings('.filter__range-row').find('.filter__range-input_to');
@@ -180,7 +213,7 @@ $(document).ready(function() {
             let range = $(this).data("ionRangeSlider");
 
             inputFrom.on('change', function() {
-                let value = $(this).val();
+                let value = $(this).val();                
                 //минимальное возможное значение для ввода
                 let minValue = range.options.min.toString();
                 //максимальное возможное значение для ввода
@@ -218,17 +251,7 @@ $(document).ready(function() {
         $('.filter__range-input').on('input', function() {
             $(this).val($(this).val().replace(/\D/, ''));
         });
-    }    
-
-    //кнопка reset в фильтре
-    if($('.filter').length) {
-        //очистка
-        $('button[type="reset"]').click(function() {
-            $('.filter').find('input[type="checkbox"]').prop('checked', false).removeAttr('checked');
-            $('.filter').find('input[type="radio"]').prop('checked', false).removeAttr('checked');
-        }); 
-        
-    }
+    }  
 
     //октрытие/скрытие фильтров
     if($('.filter').length) {
@@ -240,7 +263,7 @@ $(document).ready(function() {
     }
 
     if (window.innerWidth <= 992) {
-        $('.js-catalog-toggle').click(function() {
+        $('.js-catalog-toggle').click(function(e) {
             $(this).toggleClass('active').next('.js-catalog-content').slideToggle();
 
         })
