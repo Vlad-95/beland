@@ -1,5 +1,52 @@
 .prod-detail {
     padding-bottom: 137px;
+
+    &__slider {
+        .slick-arrow {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+            top: calc(100% - 60px);
+
+            &:before {
+                content: '';
+                background-image: url('../img/icons/arrow-white.png');
+                width: 15px;
+                height: 11px;
+                display: block;
+                opacity: 1;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+            }
+
+            &.slick-prev {
+                left: auto;
+                right: 82px;
+
+                &:hover,&:focus {
+                    background-color: rgba(0, 0, 0, 0.5);
+                }
+                &:before {
+                    transform: rotate(90deg);
+                }
+            }
+            &.slick-next {
+                left: auto;
+                right: 40px;
+                &:hover,&:focus {
+                    background-color: rgba(0, 0, 0, 0.5);
+                }
+                &:before {
+                    transform: rotate(-90deg);
+                }
+            }
+        }
+    }
     
     &__content {
         display: flex;
@@ -59,6 +106,22 @@
 
 @media screen and (max-width: 768px) {
     .prod-detail {
+        &__slider {
+            .slick-arrow {
+                top: calc(100% - 40px);
+    
+                &.slick-prev {
+                    left: auto;
+                    right: 82px;
+                }
+
+                &.slick-next {
+                    left: auto;
+                    right: 40px;
+                }
+            }
+        }
+
         &__text {
             width: 50%;
         }
@@ -89,6 +152,30 @@
 
 @media screen and (max-width: 768px) {
     .prod-detail { 
+        &__slider {
+            .slick-arrow {
+                width: 30px;
+                height: 30px;
+                top: calc(100% - 30px);
+
+                &:before {
+                    width: 10px;
+                    height: 7px;
+                    background-size: cover;
+                }
+    
+                &.slick-prev {
+                    left: auto;
+                    right: 62px;
+                }
+
+                &.slick-next {
+                    left: auto;
+                    right: 30px;
+                }
+            }
+        }
+
         &__content {
             flex-wrap: wrap;
         }

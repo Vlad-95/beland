@@ -355,6 +355,7 @@
 
     &__feedback {
         background-color: #e91e63;
+        border: 1px solid;
         font-size: 14px;
         font-weight: 700;
         font-family: @opensans;
@@ -363,6 +364,11 @@
         display: inline-block;
         margin-top: 24px;
         padding: 13px 18px;
+
+        &.white {
+            color: @darkBlue!important;
+            border-color: @darkBlue!important;
+        }
     }
 
     &__sizes {

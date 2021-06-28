@@ -345,7 +345,7 @@ $(document).ready(function() {
     //слайдер Производство-детальная
     if($('.prod-detail__slider').length) {
         $('.prod-detail__slider').slick({
-            arrows: false,
+            arrows: true,
             dots: false
         })
     }
@@ -379,6 +379,29 @@ $(document).ready(function() {
         })
     }
 
+    //смена цветов Каталог-детальная
+    if($('.catalog-detail').length) {
+
+        $('.catalog-detail__feedback').css('background-color', $('.catalog-detail__color .item.active').css('background-color'));
+        if ($('.catalog-detail__color .item.active').css('background-color') == 'rgb(255, 255, 255)') {
+            $('.catalog-detail__feedback').addClass('white');
+        } else {
+            $('.catalog-detail__feedback').removeClass('white');
+        }
+        $('.catalog-detail__color .item').click(function () {
+            let activeItemColor = $(this).css('background-color');
+            
+            $(this).addClass('active').siblings('.item').removeClass('active');
+            $('.catalog-detail__feedback').css('background-color', activeItemColor);
+
+            if ($(this).css('background-color') == 'rgb(255, 255, 255)') {
+                $('.catalog-detail__feedback').addClass('white');
+            } else {
+                $('.catalog-detail__feedback').removeClass('white');
+            }
+        })
+    }
+
     //перенос блока комплектов из сайдбара
     if (window.innerWidth <= 992 && $('.similar').length) {
         let similarBlock = $('.similar:not(h2)');
@@ -407,5 +430,17 @@ $(document).ready(function() {
             $('.burger').show();
         }
         $('.form.small').fadeOut();
+    })
+
+    //открытие/закрытие формы "Отправить запрос" в каталоге-детальная
+    $('.catalog-detail__feedback, .prod-detail__order').click(function() {
+        $('body,html').animate({scrollTop:0},500);
+        $('body').addClass('opacity-layer');
+        $('.form.request').fadeIn();
+    });
+
+    $('.form.request .form__close').click(function() {
+        $('body').removeClass('opacity-layer');
+        $('.form.request').fadeOut();
     })
 });
