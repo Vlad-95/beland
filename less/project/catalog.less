@@ -223,6 +223,7 @@
 
     &__main {
         display: flex;
+        align-items: flex-start;
         padding-top: 20px;
         margin-bottom: 45px;
     }
@@ -251,6 +252,7 @@
 
         &-item {
             padding: 0 5px;
+            cursor: pointer;
 
             &.slick-current {
                 div {
@@ -278,6 +280,7 @@
     &__content {
         width: 51%;
         padding-left: 72px;
+        position: relative;
 
         .page-title {
             margin-top: -10px;
@@ -364,6 +367,7 @@
         display: inline-block;
         margin-top: 24px;
         padding: 13px 18px;
+        transition: 0.3s;
 
         &.white {
             color: @darkBlue!important;

@@ -21,7 +21,7 @@
                     <li class="header__menu-item">
                         <a href="about.html">О компании</a>
                     </li>
-                    <li class="header__menu-item">
+                    <li class="header__menu-item header__menu-item_drop">
                         <a href="catalog.html">Каталог</a>
                         <div class="header__menu-drop"></div>
                         <ul class="header__menu-sub">
@@ -534,6 +534,62 @@
                                 </div>
 
                                 <a href="javascript:;" class="catalog-detail__feedback">Отправить запрос</a>
+
+                                <form action="" class="form request">
+                                    <div class="form__header">
+                                        <h2 class="form__name">Заполните форму ниже, 
+                                            и мы свяжемся с вами 
+                                            в ближайшее время</h2>
+                                        <div class="form__close">
+                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M11 0C4.935 0 0 4.935 0 11C0 17.065 4.935 22 11 22C17.065 22 22 17.065 22 11C22 4.935 17.065 0 11 0ZM11 20C6.038 20 2 15.963 2 11C2 6.038 6.038 2 11 2C15.963 2 20 6.038 20 11C20 15.963 15.963 20 11 20Z" fill="#ffffff"/>
+                                                <path d="M14.707 7.293C14.316 6.902 13.684 6.902 13.293 7.293L11 9.586L8.70701 7.293C8.31601 6.902 7.68401 6.902 7.29301 7.293C6.90201 7.684 6.90201 8.316 7.29301 8.707L9.58601 11L7.29301 13.293C6.90201 13.684 6.90201 14.316 7.29301 14.707C7.48801 14.902 7.74401 15 8.00001 15C8.25601 15 8.51201 14.902 8.70701 14.707L11 12.414L13.293 14.707C13.488 14.902 13.744 15 14 15C14.256 15 14.512 14.902 14.707 14.707C15.098 14.316 15.098 13.684 14.707 13.293L12.414 11L14.707 8.707C15.098 8.316 15.098 7.684 14.707 7.293Z" fill="#ffffff"/>
+                                                </svg>
+                                                
+                                        </div>
+                                    </div>
+                                    <div class="form__body">
+                                        <div class="form__item">
+                                            <input type="text" class="form__input" placeholder="* Ваше имя">
+                                        </div>
+                
+                                        <div class="form__item">
+                                            <input type="text" class="form__input" placeholder="  Телефон">
+                                        </div>
+                
+                                        <div class="form__item">
+                                            <input type="text" class="form__input" placeholder="* Email">
+                                        </div>
+                
+                                        <div class="form__item">
+                                            <textarea class="form__textarea" placeholder="* Текст сообщения"></textarea>
+                                        </div>
+
+                                        <div class="form__item">
+                                            <label class="form__file">
+                                                <i class="icon">+</i>
+                                                <p class="name">Прикрепить файл</p>
+                                                <input type="file" name="" id="">
+                                            </label>
+                                        </div>
+                                
+                                        <label class="form__agree">
+                                            <input type="checkbox" name="" id="">
+                                            <p class="text">Я соглашаюсь с <a href="javascript:;">Политикой конфиденциальности</a></p>
+                                        </label>
+                                
+                                        <button class="form__submit">
+                                            Отправить запрос
+                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M15.923 10.618C15.872 10.495 15.799 10.385 15.706 10.292L12.707 7.293C12.316 6.902 11.684 6.902 11.293 7.293C10.902 7.684 10.902 8.316 11.293 8.707L12.586 10H7C6.448 10 6 10.448 6 11C6 11.553 6.448 12 7 12H12.586L11.293 13.293C10.902 13.684 10.902 14.316 11.293 14.707C11.488 14.902 11.744 15 12 15C12.256 15 12.512 14.902 12.707 14.707L15.706 11.708C15.799 11.616 15.872 11.505 15.923 11.382C16.024 11.138 16.024 10.862 15.923 10.618Z" fill="#fff"/>
+                                                <path d="M18 0H4C1.794 0 0 1.794 0 4V18C0 20.206 1.794 22 4 22H18C20.206 22 22 20.206 22 18V4C22 1.794 20.206 0 18 0ZM20 18C20 19.103 19.103 20 18 20H4C2.897 20 2 19.103 2 18V4C2 2.897 2.897 2 4 2H18C19.103 2 20 2.897 20 4V18Z" fill="#fff"/>
+                                                </svg>
+                                                
+                                        </button>
+                                    </div>
+                            
+                                    
+                                </form>
                             </div>
                         </div>
 
@@ -779,43 +835,7 @@
         </div>
     </footer>
 
-    <form action="" class="form request">
-        <h2 class="form__name">Отправка запроса</h2>
-        <div class="form__close">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11 0C4.935 0 0 4.935 0 11C0 17.065 4.935 22 11 22C17.065 22 22 17.065 22 11C22 4.935 17.065 0 11 0ZM11 20C6.038 20 2 15.963 2 11C2 6.038 6.038 2 11 2C15.963 2 20 6.038 20 11C20 15.963 15.963 20 11 20Z" fill="#00adef"/>
-                <path d="M14.707 7.293C14.316 6.902 13.684 6.902 13.293 7.293L11 9.586L8.70701 7.293C8.31601 6.902 7.68401 6.902 7.29301 7.293C6.90201 7.684 6.90201 8.316 7.29301 8.707L9.58601 11L7.29301 13.293C6.90201 13.684 6.90201 14.316 7.29301 14.707C7.48801 14.902 7.74401 15 8.00001 15C8.25601 15 8.51201 14.902 8.70701 14.707L11 12.414L13.293 14.707C13.488 14.902 13.744 15 14 15C14.256 15 14.512 14.902 14.707 14.707C15.098 14.316 15.098 13.684 14.707 13.293L12.414 11L14.707 8.707C15.098 8.316 15.098 7.684 14.707 7.293Z" fill="#00adef"/>
-                </svg>
-                
-        </div>
-
-        <div class="form__item">
-            <p class="form__item-name">Ваше имя *</p>
-            <input type="text" class="form__input">
-        </div>
-
-        <div class="form__item">
-            <p class="form__item-name">Телефон</p>
-            <input type="text" class="form__input">
-        </div>
-
-        <div class="form__item">
-            <p class="form__item-name">Email *</p>
-            <input type="text" class="form__input">
-        </div>
-
-        <div class="form__item">
-            <p class="form__item-name">Сообщение *</p>
-            <textarea name="" id="" class="form__textarea"></textarea>
-        </div>
-
-        <label class="form__agree">
-            <input type="checkbox" name="" id="">
-            <p class="text">Я соглашаюсь с <a href="javascript:;">Политикой конфиденциальности</a></p>
-        </label>
-
-        <button class="form__submit">Отправить</button>
-    </form>
+    
 
     <script src="js/libs/jquery-3.2.1.min.js"></script>
     <script src="js/libs/jquery-ui.js"></script>

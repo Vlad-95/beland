@@ -52,6 +52,11 @@
         display: flex;
         margin-top: 70px;
         margin-bottom: 67px;
+        position: relative;
+
+        .form.request {
+            left: 0;
+        }
     }
 
     &__text {
@@ -94,6 +99,11 @@
         margin-top: 44px;
     }
 
+    &__video {
+        height: 540px;
+
+    }
+
     &__descr {
         max-width: 770px;
         margin-top: 51px;
@@ -103,7 +113,14 @@
         }
     }
 }
-
+@media screen and (max-width: 1200px) {
+    .prod-detail {
+        &__video {
+            height: 400px;
+    
+        }
+    }
+}
 @media screen and (max-width: 768px) {
     .prod-detail {
         &__slider {
@@ -142,6 +159,11 @@
             }
         }
 
+        &__video {
+            height: 320px;
+    
+        }
+
         &__descr {
             p {
                 font-size: 15px;
@@ -150,7 +172,7 @@
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 576px) {
     .prod-detail { 
         &__slider {
             .slick-arrow {
@@ -187,6 +209,11 @@
         &__img {
             width: 100%;
             text-align: center;
+        }
+
+        &__video {
+            height: 250px;
+    
         }
 
     }

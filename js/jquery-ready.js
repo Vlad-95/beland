@@ -175,20 +175,12 @@ $(document).ready(function() {
             };            
         });
 
-        //кнопка reset в фильтре очистка
-        $('button[type="reset"]').click(function() {
-            resetCount = 0;
-            $(this).fadeOut();
-
-            $('.filter').find('input[type="checkbox"]').prop('checked', false).removeAttr('checked');
-            $('.filter').find('input[type="radio"]').prop('checked', false).removeAttr('checked');
-            $('.filter__range-input_from').val("0");
-        }); 
-
         //диапазон в каталоге
         $(".js-range-slider").each(function() {
             let inputFrom = $(this).siblings('.filter__range-row').find('.filter__range-input_from');
             let inputTo = $(this).siblings('.filter__range-row').find('.filter__range-input_to');
+            let rangeChangeCount = 0;
+
             $(this).ionRangeSlider({
                 hide_from_to: true,
                 hide_min_max: true,
@@ -196,61 +188,171 @@ $(document).ready(function() {
     
                 onStart: function (data) {
                     inputFrom.val(data.from);
-                    inputTo.val(data.to)
+                    inputTo.val(data.to);
                 },
 
                 onChange: function (data) {
                     inputFrom.val(data.from);
-                    inputTo.val(data.to)
+                    inputTo.val(data.to);
+
+                    
                 },
 
                 onFinish: function (data) {
                     inputFrom.val(data.from);
-                    inputTo.val(data.to)
+                    inputTo.val(data.to);
+
+                    
+
+                    if(data.from == data.min && data.to == data.max) {
+                        rangeChangeCount = 0;
+                        resetCount--;
+
+                        $('.catalog__sidebar-name.parameters button[type="reset"] .count').text(resetCount);
+
+                        if (resetCount == 0) {                            
+                            $('.catalog__sidebar-name.parameters button[type="reset"]').fadeOut();
+                            $('.catalog__sidebar-name.parameters button[type="reset"] .count').text(resetCount);
+                        }
+                        
+                    } else {
+                        if (rangeChangeCount >= 1) {
+                            rangeChangeCount +=0;
+                            resetCount += 0;
+                        } else {
+                            rangeChangeCount++;
+                            resetCount++;
+                        }
+                        
+                        $('.catalog__sidebar-name.parameters button[type="reset"] .count').text(resetCount);
+                        $('.catalog__sidebar-name.parameters button[type="reset"]').fadeIn();
+                        
+                    }
+                    
+                    
+                    
                 }
             });
 
             let range = $(this).data("ionRangeSlider");
 
             inputFrom.on('change', function() {
-                let value = $(this).val();                
+                let value = parseInt($(this).val());                
                 //минимальное возможное значение для ввода
-                let minValue = range.options.min.toString();
+                let minValue = range.options.min;
                 //максимальное возможное значение для ввода
-                let maxValue = range.options.max.toString();  
+                let maxValue = range.options.max;  
+                //позиция бегунка
+                let newFromValue = range.options.from;  
+                let newToValue = range.options.to;                     
                 
-                if (value == "") {                    
-                    $(this).val("0")
-                } else if (value >= maxValue) {
+
+                if (isNaN(value)) {                    
+                    $(this).val(minValue);
+                    value = minValue;
+
+                    range.update({
+                        from: value
+                    })
+                
+                } else if (value >= maxValue) {                    
                     $(this).val(maxValue);
+                    value = maxValue;
+
+                    range.update({
+                        from: value
+                    })
+                } else if (value >= newToValue) {
+                    $(this).val(newToValue);
+                    value = newToValue;
+
+                    console.log(1);
+                    range.update({
+                        from: value
+                    })
+                } else {
+                    $(this).val(value);
+                    range.update({
+                        from: value
+                    })
                 }
-                range.update({
-                    from: value
-                })
+
+                
             })
 
             inputTo.on('change', function() {
-                let value = $(this).val();
+                let value = parseInt($(this).val());                
                 //минимальное возможное значение для ввода
-                let minValue = range.options.min.toString();
+                let minValue = range.options.min;
                 //максимальное возможное значение для ввода
-                let maxValue = range.options.max.toString();  
+                let maxValue = range.options.max;
+                //позиция бегунка
+                let newFromValue = range.options.from;  
+                let newToValue = range.options.to;
                 
-                if (value == "") {                    
-                    $(this).val("0")
-                } else if (value >= maxValue) {
-                    $(this).val(maxValue);
-                }
 
-                range.update({
-                    to: $(this).val()
-                })
+                if (isNaN(value)) {                    
+                    $(this).val(maxValue);
+                    value = maxValue;
+
+                    range.update({
+                        to: value
+                    })
+                } else if (value >= maxValue) {
+                    value = maxValue;
+                    $(this).val(maxValue);
+
+                    range.update({
+                        to: value
+                    })
+                } else if (value <= newFromValue) {
+                    $(this).val(newFromValue);
+                    value = newFromValue;
+                    
+                    range.update({
+                        to: value
+                    })
+                } else {
+                    $(this).val(value);
+
+                    range.update({
+                        to: value
+                    })
+                }
+                
             })
         });
 
         $('.filter__range-input').on('input', function() {
             $(this).val($(this).val().replace(/\D/, ''));
         });
+
+        //кнопка reset в фильтре очистка
+        $('button[type="reset"]').click(function() {
+            resetCount = 0;
+            $(this).fadeOut();
+
+            $('.filter').find('input[type="checkbox"]').prop('checked', false).removeAttr('checked');
+            $('.filter').find('input[type="radio"]').prop('checked', false).removeAttr('checked');
+            
+
+            $(".js-range-slider").each(function() {
+                let inputFrom = $(this).siblings('.filter__range-row').find('.filter__range-input_from');
+                let inputTo = $(this).siblings('.filter__range-row').find('.filter__range-input_to');
+
+                let range = $(this).data("ionRangeSlider");
+               
+                range.update({
+                    from: range.options.min,
+                    to: range.options.max
+                });
+
+                inputFrom.val(range.options.min)
+                inputTo.val(range.options.max)
+            })
+        }); 
+
+        
     }  
 
     //октрытие/скрытие фильтров
@@ -453,17 +555,41 @@ $(document).ready(function() {
             $('.burger').show();
         }
         $('.form.small').fadeOut();
-    })
+    });
 
     //открытие/закрытие формы "Отправить запрос" в каталоге-детальная
     $('.catalog-detail__feedback, .prod-detail__order').click(function() {
-        $('body,html').animate({scrollTop:0},500);
-        $('body').addClass('opacity-layer');
-        $('.form.request').fadeIn();
+        if (window.innerWidth <= 992) {
+            $('body').addClass('opacity-layer');
+            $('body,html').animate({scrollTop:0},500);
+            $('.form.request').fadeIn();
+        } else {
+            $('.form.request').fadeIn();
+        }
+         
     });
 
     $('.form.request .form__close').click(function() {
-        $('body').removeClass('opacity-layer');
-        $('.form.request').fadeOut();
-    })
+
+        if (window.innerWidth <= 992) {
+            $('body').removeClass('opacity-layer');
+            
+            $('.form.request').fadeOut();
+        } else {
+            $('.form.request').fadeOut();
+        }
+        
+    });
+
+    if (window.innerWidth <= 992 && $('.form.request').length) {
+        $('.footer').after($('.form.request'))
+    }
+
+    //прикрепление файла
+    $('.form__file input').on('change', function(e) {
+        let filename = $(this)[0].files[0].name;
+
+        $(this).siblings('.name').text(filename);
+        
+      })
 });

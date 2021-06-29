@@ -1,5 +1,6 @@
 .logistics {
     padding-bottom: 119px;
+    margin-top: -10px;
     &__img {
         margin-bottom: 67px;
     }
@@ -8,7 +9,7 @@
         p {
             font-size: 17px;
             line-height: 1.5;
-            margin-bottom: 25px;
+            margin-bottom: 36px;
 
             &:last-child {
                 margin-bottom: 0;
@@ -43,13 +44,17 @@
 
         h2 {
             font-size: 1.4em;
-            margin: 38px 0 27px;
+            margin: 60px 0 27px;
         }
     }
 }
 
 @media screen and (max-width: 768px) {
     .logistics {
+        &__img {
+            margin-bottom: 20px;
+        }
+
         .wysiwyg {
             p {
                 font-size: 15px;
@@ -57,6 +62,10 @@
     
             ul {
                 font-size: 15px;
+            }
+
+            h2 {
+                margin: 35px 0 20px;
             }
         }
     }
