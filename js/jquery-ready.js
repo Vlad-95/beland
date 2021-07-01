@@ -126,16 +126,13 @@ $(document).ready(function() {
     //клик по чекбоксам и радиокнопкам
     if($('.filter').length) {
         //счетчик для показа цифры в кнопке "Сбросить"
-        let resetCount = 0;
+        let resetCount;
 
-        $('.filter__checkbox input').click(function() {
-            if($(this).is(':checked')) {
-                $(this).prop('checked', true).attr('checked', 'checked');
-                resetCount++;
-            } else {
-                $(this).prop('checked', false).removeAttr('checked');
-                resetCount--;
-            }
+        $('.filter__item input').click(function() {
+            let inputCheckedLength = $('.filter__item input:checked').length
+            let rangeChangeTrueLength = $(".js-range-slider[data-change='true']").length;
+
+            resetCount = inputCheckedLength + rangeChangeTrueLength;
 
             if (resetCount >= 1) {            
                 $('.catalog__sidebar-name.parameters button[type="reset"] .count').text(resetCount);
@@ -145,30 +142,21 @@ $(document).ready(function() {
             }
         });
 
-        $('.filter__item').each(function() {
-            if($(this).find('.filter__radio').length) {
-                let radioClickCount = 0;
-                $(this).find('.filter__radio input').click(function() {
-                    if (radioClickCount >= 1) {
-                        radioClickCount +=0;
-                        resetCount += 0;
-                    } else {
-                        radioClickCount++;
-                        resetCount++;
-                    }
+        
 
-                    if (resetCount >= 1) {       
-                        $('.catalog__sidebar-name.parameters button[type="reset"] .count').text(resetCount);     
-                        $('.catalog__sidebar-name.parameters button[type="reset"]').fadeIn();
-                    } else {
-                        $('.catalog__sidebar-name.parameters button[type="reset"]').fadeOut();
-                    }
-                })
+        // чекбоксы
+        $('.filter__checkbox input').click(function() {
+
+            if($(this).is(':checked')) {
+                $(this).prop('checked', true).attr('checked', 'checked');                
+            } else {
+                $(this).prop('checked', false).removeAttr('checked');
             }
         });
 
-        $('.filter__radio input').click(function() {           
-
+        //радио
+        $('.filter__radio input').click(function() {   
+            
             if($(this).is(':checked')) {
                 $(this).prop('checked', true).attr('checked', 'checked');
                 $(this).parent().siblings().find('input').prop('checked', false).removeAttr('checked');
@@ -176,10 +164,12 @@ $(document).ready(function() {
         });
 
         //диапазон в каталоге
+       
         $(".js-range-slider").each(function() {
             let inputFrom = $(this).siblings('.filter__range-row').find('.filter__range-input_from');
             let inputTo = $(this).siblings('.filter__range-row').find('.filter__range-input_to');
-            let rangeChangeCount = 0;
+            let item = $(this);
+            
 
             $(this).ionRangeSlider({
                 hide_from_to: true,
@@ -196,43 +186,41 @@ $(document).ready(function() {
                     inputTo.val(data.to);
 
                     
+                    if(resetCount != undefined) {  
+                        
+                        if(data.from != data.min || data.to != data.max) {
+                            item.attr('data-change', true);
+                        } else {
+                            item.attr('data-change', false);
+                        }
+                        
+
+                        let inputCheckedLength = $('.filter__item input:checked').length
+                        let rangeChangeTrueLength = $(".js-range-slider[data-change='true']").length;
+            
+                        resetCount = inputCheckedLength + rangeChangeTrueLength;
+                        
+                        if (resetCount >= 1) {            
+                            $('.catalog__sidebar-name.parameters button[type="reset"] .count').text(resetCount);
+                            $('.catalog__sidebar-name.parameters button[type="reset"]').fadeIn();
+                        } else {
+                            $('.catalog__sidebar-name.parameters button[type="reset"]').fadeOut();
+                        }
+                    } else {
+                        resetCount = 0;
+                        
+                    }   
                 },
 
                 onFinish: function (data) {
                     inputFrom.val(data.from);
-                    inputTo.val(data.to);
-
-                    
-
-                    if(data.from == data.min && data.to == data.max) {
-                        rangeChangeCount = 0;
-                        resetCount--;
-
-                        $('.catalog__sidebar-name.parameters button[type="reset"] .count').text(resetCount);
-
-                        if (resetCount == 0) {                            
-                            $('.catalog__sidebar-name.parameters button[type="reset"]').fadeOut();
-                            $('.catalog__sidebar-name.parameters button[type="reset"] .count').text(resetCount);
-                        }
-                        
-                    } else {
-                        if (rangeChangeCount >= 1) {
-                            rangeChangeCount +=0;
-                            resetCount += 0;
-                        } else {
-                            rangeChangeCount++;
-                            resetCount++;
-                        }
-                        
-                        $('.catalog__sidebar-name.parameters button[type="reset"] .count').text(resetCount);
-                        $('.catalog__sidebar-name.parameters button[type="reset"]').fadeIn();
-                        
-                    }
-                    
-                    
-                    
+                    inputTo.val(data.to);                    
                 }
+
+                
             });
+
+            
 
             let range = $(this).data("ionRangeSlider");
 
@@ -244,8 +232,30 @@ $(document).ready(function() {
                 let maxValue = range.options.max;  
                 //позиция бегунка
                 let newFromValue = range.options.from;  
-                let newToValue = range.options.to;                     
+                let newToValue = range.options.to;  
+                //ближайший range                   
+                let rangeInput = $(this).closest('.filter__range').find('.js-range-slider');
+
                 
+                
+                if ($(this).val() != range.options.min) {
+                    rangeInput.attr('data-change', true);
+                    
+                } else if ($(this).val() == range.options.min && inputTo.val() == range.options.max) {
+                    rangeInput.attr('data-change', false);
+                }
+
+                let inputCheckedLength = $('.filter__item input:checked').length
+                let rangeChangeTrueLength = $(".js-range-slider[data-change='true']").length;
+    
+                resetCount = inputCheckedLength + rangeChangeTrueLength;
+                
+                if (resetCount >= 1) {            
+                    $('.catalog__sidebar-name.parameters button[type="reset"] .count').text(resetCount);
+                    $('.catalog__sidebar-name.parameters button[type="reset"]').fadeIn();
+                } else {
+                    $('.catalog__sidebar-name.parameters button[type="reset"]').fadeOut();
+                }
 
                 if (isNaN(value)) {                    
                     $(this).val(minValue);
@@ -266,16 +276,19 @@ $(document).ready(function() {
                     $(this).val(newToValue);
                     value = newToValue;
 
-                    console.log(1);
                     range.update({
                         from: value
                     })
                 } else {
                     $(this).val(value);
+
                     range.update({
                         from: value
                     })
                 }
+
+                
+
 
                 
             })
@@ -289,7 +302,27 @@ $(document).ready(function() {
                 //позиция бегунка
                 let newFromValue = range.options.from;  
                 let newToValue = range.options.to;
+                //ближайший range                   
+                let rangeInput = $(this).closest('.filter__range').find('.js-range-slider');
                 
+                if ($(this).val() != range.options.max) {
+                    rangeInput.attr('data-change', true);
+                } else if ($(this).val() == range.options.min && inputFrom.val() == range.options.min) {
+                    rangeInput.attr('data-change', false);
+                }
+
+                let inputCheckedLength = $('.filter__item input:checked').length
+                let rangeChangeTrueLength = $(".js-range-slider[data-change='true']").length;
+    
+                resetCount = inputCheckedLength + rangeChangeTrueLength;
+                
+                if (resetCount >= 1) {            
+                    $('.catalog__sidebar-name.parameters button[type="reset"] .count').text(resetCount);
+                    $('.catalog__sidebar-name.parameters button[type="reset"]').fadeIn();
+                } else {
+                    $('.catalog__sidebar-name.parameters button[type="reset"]').fadeOut();
+                }
+
 
                 if (isNaN(value)) {                    
                     $(this).val(maxValue);
@@ -319,6 +352,8 @@ $(document).ready(function() {
                         to: value
                     })
                 }
+
+                
                 
             })
         });
@@ -334,6 +369,7 @@ $(document).ready(function() {
 
             $('.filter').find('input[type="checkbox"]').prop('checked', false).removeAttr('checked');
             $('.filter').find('input[type="radio"]').prop('checked', false).removeAttr('checked');
+            $('.filter').find('.js-range-slider').attr('data-change', false);
             
 
             $(".js-range-slider").each(function() {
